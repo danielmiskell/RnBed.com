@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+    body {
+        background-color: #B00;
+    }
+
+    h3 {
+    font-family: times, Times New Roman, times-roman, georgia, serif;
+    color: #444;
+    margin: 0;
+    padding: 0px 0px 6px 0px;
+    font-size: 51px;
+    line-height: 50px;
+    letter-spacing: -2px;
+    font-weight: bold;
+    font-size: 500%;
+    border: 0px;
+    }
+
+    </style>
+</head>
+  <body>
+    <h3 align="center"> RnBed.com <h3>
+
+    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+    <div id="player" style="width:100%" style="height:100%" ></div>
+
+    <script>
+
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+
+      var myplaylist = ["sqBXwiD2e58", "xvXhPi2y8jk", "0KcjalJ5COI","GyiAtPq3fF4","kqRhIuxkMkI","jJ3ua1xENyo","w2IcKrcqRpY"];
+
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '800',
+          width: '1300',
+          videoId: 'MsY935WJhBw',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      var maximum = myplaylist.length-1;
+      var minimum = 1;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.ENDED) {
+            var i = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
+            player.loadVideoById(myplaylist[i], 5, "large")
+            playVideo;
+
+        }
+      }
+
+
+
+
+      function stopVideo() {
+        player.stopVideo();
+      }
+    </script>
+  </body>
+</html>
